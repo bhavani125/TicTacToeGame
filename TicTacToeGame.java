@@ -1,12 +1,15 @@
 package com.game;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class TicTacToeGame {
     //constant variables
     static char[] board = new char[10];
     static char player, computer;
+    static int[] computerNum;
     static Scanner sc = new Scanner(System.in);
+    static final Random random = new Random();
 
     //Main Method
     public static void main(String[] args) {
@@ -20,8 +23,10 @@ public class TicTacToeGame {
         currentBoard();
         //calling userMove method
         userMove();
-        //calling desiredMove
+        //calling desiredMove method
         desiredMove();
+        //calling whoPlayFirst Method
+        whoPlayFirst();
     }
 
     // Creating a method
@@ -93,7 +98,39 @@ public class TicTacToeGame {
         }
         //calling current board
         currentBoard();
+    }
 
+    //Creating Method for WhoPlayFirst
+    static void whoPlayFirst() {
+        System.out.println("\nMaking toss to check who play first\n\nselect the number 1 for head and 2 for tail\n ");
+        int check = sc.nextInt();
+        if (check == 1 || check == 2) {
+            int flip = random.nextInt(2) + 1;
+            if (flip == 1) {
+                System.out.println("\nBy tossing Coin it shows HEAD\n");
+            } else {
+                System.out.println("\nBy tossing Coin it shows TAIL\n");
+            }
+            if (flip == check) {
+                System.out.println("u won the toss then You have to start the game\n");
+                desiredMove();
+            } else {
+                System.out.println(" You lost the toss now its computer turn first\n");
+                computerMove();
+            }
+        } else {
+            System.out.println("\nInvalid input Again\n");
+            whoPlayFirst();
+        }
+    }
+    //creating  for computer move
+    static void computerMove() {
+        computerNum = new int[9];
+        int  computerChoice = random.nextInt(9)+1;
+        board[computerChoice]=computer;
+        System.out.println("the computer choice "+computerChoice+"' now its your turn.");
+        desiredMove();
     }
 }
+
 
