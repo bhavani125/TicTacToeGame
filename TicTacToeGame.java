@@ -20,7 +20,8 @@ public class TicTacToeGame {
         currentBoard();
         //calling userMove method
         userMove();
-
+        //calling desiredMove
+        desiredMove();
     }
 
     // Creating a method
@@ -42,8 +43,9 @@ public class TicTacToeGame {
         }
 
     }
+
     //Creating a method for showBoard
-    static void showBoard(){
+    static void showBoard() {
         System.out.println("     |     |     ");
         System.out.println("  " + board[1] + "  | " + board[2] + "   | " + board[3] + "  ");
         System.out.println(".....|.....|.....");
@@ -52,6 +54,7 @@ public class TicTacToeGame {
         System.out.println("  " + board[7] + "  | " + board[8] + "   | " + board[9] + "  ");
         System.out.println("     |     |      ");
     }
+
     //writing a method to show current board
     private static void currentBoard() {
         int RADIX = 10;  //radix is used to convert int to char
@@ -63,18 +66,34 @@ public class TicTacToeGame {
         //calling show board method  here
         showBoard();
     }
+
     // creating method for user to move
     static void userMove() {
-        System.out.println("\nUser to select the number from 1to9:\n");
+        System.out.println("\nUser to select number from 1to9:\n");
         int userChoice = sc.nextInt();
         //calling current board method
         currentBoard();
         //checking free space
         if (board[userChoice] == 'X' || board[userChoice] == 'O') {
             System.out.println("there is no free space");
-        }else{
+        } else {
             System.out.println("there is free space");
         }
+    }
+
+    //creating a method for user move and  checking free space
+    static void desiredMove() {
+        System.out.println("User to select the number from 1 o 9");
+        int userChoice = sc.nextInt();
+        if (board[userChoice] != 'X' || board[userChoice] != 'O') {
+            board[userChoice] = player;
+            System.out.println("there is  free space");
+        } else {
+            System.out.println("there is no free space");
+        }
+        //calling current board
+        currentBoard();
+
     }
 }
 
